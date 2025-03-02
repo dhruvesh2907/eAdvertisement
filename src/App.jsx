@@ -12,8 +12,10 @@ import { DemoSidebar } from './components/admin/DemoSidebar'
 import { Demo } from './components/admin/Demo'
 import { AgencySidebar } from './components/layouts/AgencySidebar'
 import { AdvertisementForm } from './components/user/agency/AdvertisementForm'
+import axios from "axios";
 function App() {
   const [count, setCount] = useState(0)
+   axios.defaults.baseURL = "http://localhost:3000"
 
   return (
     <>
