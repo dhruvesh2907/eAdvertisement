@@ -71,11 +71,11 @@ const LoginSignUp = () => {
             theme: "dark",
             transition: Bounce,
             });
-          localStorage.setItem("id",res.data.data._id)
-          localStorage.setItem("role",res.data.data.roleId.name)
-          if(res.data.data.roleId.name === "USER"){
+          // localStorage.setItem("id",res.data.data._id)
+          // localStorage.setItem("role",res.data.data.roleId.name)
+          // if(res.data.data.roleId.name === "USER"){
             navigate("/user") //check in app.js
-          }
+          // }
         } else {
           //alert("Login failed. Please check your credentials.");
           toast.error('Login failed. Please check your credentials.', {
@@ -194,7 +194,9 @@ const LoginSignUp = () => {
           </div>
           <div 
             className={action === "Login" ? "submit" : "submit gray"} 
-            onClick={() => setAction("Login")}
+            onClick={() => setAction("Login")
+              
+            }
           >
             Login
           </div>
