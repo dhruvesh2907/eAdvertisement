@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import "./assets/adminlte.css"
 import "./assets/adminlte.min.css"
 import { Login } from './components/common/Login'
@@ -16,7 +16,16 @@ import axios from "axios";
 function App() {
   const [count, setCount] = useState(0)
    axios.defaults.baseURL = "http://localhost:3000"
+   const location = useLocation();
 
+  useEffect(() => {
+    if (location.pathname === "/login" || location.pathname === "/signup") {
+      document.body.className = ""; // Remove the unwanted class for login and signup
+    } else {
+      document.body.className =
+        "layout-fixed sidebar-expand-lg bg-body-tertiary sidebar-open app-loaded";
+    }
+  }, [location.pathname]);
   return (
     <>
     <Routes>

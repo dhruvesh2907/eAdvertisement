@@ -5,12 +5,13 @@ import user_icon from './person.png';
 import email_icon from './email.png';
 import password_icon from './password.png';
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginSignUp = () => {
   const [action, setAction] = useState("Sign Up");
   const [formData, setFormData] = useState({ firstName: "", lastName: "", age: "", email: "", password: "" });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -52,7 +53,7 @@ const LoginSignUp = () => {
             
         }
       } else {
-        const res = await axios.post("/login", {
+        const res = await axios.post("/user/login", {
           email: formData.email,
           password: formData.password,
         });
@@ -70,6 +71,11 @@ const LoginSignUp = () => {
             theme: "dark",
             transition: Bounce,
             });
+          localStorage.setItem("id",res.data.data._id)
+          localStorage.setItem("role",res.data.data.roleId.name)
+          if(res.data.data.roleId.name === "USER"){
+            navigate("/user") //check in app.js
+          }
         } else {
           //alert("Login failed. Please check your credentials.");
           toast.error('Login failed. Please check your credentials.', {
