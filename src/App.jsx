@@ -12,6 +12,7 @@ import { DemoSidebar } from './components/admin/DemoSidebar'
 import { Demo } from './components/admin/Demo'
 import { AgencySidebar } from './components/layouts/AgencySidebar'
 import { AdvertisementForm } from './components/user/agency/AdvertisementForm'
+import { AddScreen } from "./components/user/agency/AddScreen";
 import axios from "axios";
 function App() {
   const [count, setCount] = useState(0)
@@ -42,9 +43,10 @@ function App() {
           <Route path='/DemoUser' element={<DemoSidebar />} >
             <Route path='profile' element={<Demo/>}></Route>
           </Route>
-          <Route path='/AgencyUser' element={<AgencySidebar />} >
-            <Route path='profile' element={<AdvertisementForm/>}></Route>
-          </Route>
+            <Route path='/Agency' element={<AgencySidebar />} >
+            <Route path="/Agency/Addscreen" element={<AddScreen />} >
+            </Route><Route path='profile' element={<AdvertisementForm/>}></Route>
+            </Route>
           
         </Routes>
         </div>

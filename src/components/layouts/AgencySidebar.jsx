@@ -1,29 +1,26 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import { AgencyNavbar } from './AgencyNavbar'
+import React from "react";
+
+import { Link, Outlet } from "react-router-dom";
+import { AgencyNavbar } from "./AgencyNavbar";
 
 export const AgencySidebar = () => {
   return (
     <>
-    <AgencyNavbar></AgencyNavbar>
-    <aside
+        <AgencyNavbar/>    
+      <aside
         className="app-sidebar bg-body-secondary shadow"
         data-bs-theme="dark"
       >
         <div className="sidebar-brand">
-          
           <a href="./index.html" className="brand-link">
-            
             <img
               src="../../dist/assets/img/AdminLTELogo.png"
               alt="AdminLTE Logo"
               className="brand-image opacity-75 shadow"
             />
-            
+
             <span className="brand-text fw-light">AdminLTE 4</span>
-            
           </a>
-          
         </div>
 
         <div
@@ -42,7 +39,6 @@ export const AgencySidebar = () => {
           }}
         >
           <nav className="mt-2">
-            
             <ul
               className="nav sidebar-menu flex-column"
               data-lte-toggle="treeview"
@@ -50,13 +46,13 @@ export const AgencySidebar = () => {
               data-accordion="false"
             >
               <li className="nav-item menu-open">
-                <a href="#" className="nav-link active">
+                <Link to="addscreen" className="nav-link active">
                   <i className="nav-icon bi bi-speedometer" />
                   <p>
-                    Dashboard
+                    ADD SCREEN
                     <i className="nav-arrow bi bi-chevron-right" />
                   </p>
-                </a>
+                </Link>
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
                     <a href="./index.html" className="nav-link active">
@@ -114,7 +110,6 @@ export const AgencySidebar = () => {
                 </ul>
               </li>
             </ul>
-            
           </nav>
         </div>
       </aside>
@@ -122,5 +117,5 @@ export const AgencySidebar = () => {
         <Outlet></Outlet>
       </main>
     </>
-  )
-}
+  );
+};

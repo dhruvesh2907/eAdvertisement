@@ -19,7 +19,7 @@ const LoginSignUp = () => {
   const handleSubmit = async () => {
     try {
       if (action === "Sign Up") {
-        formData.roleId = "67bd3f8a8717278a8401f812"; // Default role assignment
+        formData.roleId = "67be8f6378f28218ef82b36b"; // Default role assignment
         const res = await axios.post("/user", formData);
         console.log(res.data);
         if (res.status === 201) {
@@ -71,11 +71,14 @@ const LoginSignUp = () => {
             theme: "dark",
             transition: Bounce,
             });
-          // localStorage.setItem("id",res.data.data._id)
-          // localStorage.setItem("role",res.data.data.roleId.name)
-          // if(res.data.data.roleId.name === "USER"){
-            navigate("/user") //check in app.js
-          // }
+          localStorage.setItem("id",res.data.data._id)
+          localStorage.setItem("role",res.data.data.roleId.name)
+          if(res.data.data.roleId.name === "Agency"){
+          setTimeout(()=>
+          {navigate("/AgencyUser")},5000
+        )
+             //check in app.js
+          }
         } else {
           //alert("Login failed. Please check your credentials.");
           toast.error('Login failed. Please check your credentials.', {
@@ -93,7 +96,20 @@ const LoginSignUp = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred. Please try again later.");
+      {
+        //alert("Login failed. Please check your credentials.");
+        toast.error('Login failed. Please check your credentials.', {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+          });
+      }
     }
   };
 
