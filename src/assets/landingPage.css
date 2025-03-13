@@ -1,0 +1,36 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.dark-theme {
+  background-color: #0A0A2A;
+  color: white;
+}
+
+.light-theme {
+  background-color: #f8f9fa;
+  color: black;
+}
+
+/* Enable vertical scrolling for main container */
+.main-container {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling (optional) */
+.main-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-container::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 10px;
+}
+
+.main-container::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}

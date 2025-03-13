@@ -75,7 +75,7 @@ const LoginSignUp = () => {
           localStorage.setItem("role",res.data.data.roleId.name)
           if(res.data.data.roleId.name === "Agency"){
           setTimeout(()=>
-          {navigate("/AgencyUser")},5000
+          {navigate("/Agency")},5000
         )
              //check in app.js
           }
@@ -222,5 +222,5 @@ const LoginSignUp = () => {
     );
   };
   
-  export default LoginSignUp;
+export default LoginSignUp;
   

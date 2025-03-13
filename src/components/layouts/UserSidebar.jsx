@@ -1,29 +1,33 @@
-import React from 'react'
-import { UserNavbar } from './UserNavbar'
-import { Outlet } from 'react-router-dom'
+import React, { useState } from "react";
+import { UserNavbar } from "./UserNavbar";
+import { Outlet } from "react-router-dom";
 
 export const UserSidebar = () => {
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    console.log("toggleSidebar");
+    setSidebarOpen(!isSidebarOpen);
+  };
   return (
     <>
-    <UserNavbar></UserNavbar>
-    <aside
-        className="app-sidebar bg-body-secondary shadow"
-        data-bs-theme="dark"
-      >
+      <UserNavbar toggleSidebar={toggleSidebar} />
+      <aside
+          className={`app-sidebar bg-body-secondary shadow ${
+            isSidebarOpen ? "open" : "d-none"
+          }`}
+          data-bs-theme="dark"
+        >
         <div className="sidebar-brand">
-          
           <a href="./index.html" className="brand-link">
-            
             <img
               src="../../dist/assets/img/AdminLTELogo.png"
-              alt="AdminLTE Logo"
+              // alt="AdminLTE Logo"
               className="brand-image opacity-75 shadow"
             />
-            
-            <span className="brand-text fw-light">AdminLTE 4</span>
-            
+
+            <span className="brand-text fw-light">Promotix</span>
           </a>
-          
         </div>
 
         <div
@@ -42,7 +46,6 @@ export const UserSidebar = () => {
           }}
         >
           <nav className="mt-2">
-            
             <ul
               className="nav sidebar-menu flex-column"
               data-lte-toggle="treeview"
@@ -114,7 +117,6 @@ export const UserSidebar = () => {
                 </ul>
               </li>
             </ul>
-            
           </nav>
         </div>
       </aside>
@@ -122,5 +124,5 @@ export const UserSidebar = () => {
         <Outlet></Outlet>
       </main>
     </>
-  )
-}
+  );
+};
