@@ -25,7 +25,7 @@ export const GetAllScreens = () => {
     console.log("SCREEN OBJECT:", screens);
     const makePayment = async (hoardingDimension, hourlyRate, hoardingId) => {
         try {
-            const stripe = await loadStripe("pk_test_51R9eMUGggoLgE1WDAvxMdxB8VgI9ruzbalOhjhrpXCIHb9FYYfXpvjLpryO09XXnsKgFyMCVpJbZGJk0PpoD0LSj00SqcIqDY5");
+            const stripe = await loadStripe("");
     
             const res = await axios.post("api/stripe/create-checkout-session", { // ✅ Corrected API URL
                 hoardingDimension,
