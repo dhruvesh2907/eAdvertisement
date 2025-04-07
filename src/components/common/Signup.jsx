@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { FaUser, FaEnvelope, FaLock, FaBirthdayCake } from "react-icons/fa";
 
 const Container = styled.div`
-  background-color: #121212;
+  background: linear-gradient(135deg, #000000 70%, #7b2cbf 90%, #c77dff 100%);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@ const Container = styled.div`
 `;
 
 const Form = styled.div`
-  background-color: #1e1e1e;
+  background: linear-gradient(135deg, #000000 70%, #7b2cbf 90%, #c77dff 100%);
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
@@ -30,7 +30,7 @@ const Form = styled.div`
 const InputField = styled.div`
   display: flex;
   align-items: center;
-  background: #333;
+  background: #222;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 15px;
@@ -47,7 +47,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background: #28a745;
+  background: #7b2cbf;
   border: none;
   color: white;
   padding: 12px;
@@ -55,8 +55,16 @@ const Button = styled.button`
   cursor: pointer;
   transition: 0.3s ease-in-out;
   &:hover {
-    background: #218838;
+    background: #5a1a8e;
   }
+`;
+
+const RadioGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 15px 0;
+  color: white;
 `;
 
 const LinkText = styled.p`
@@ -70,15 +78,17 @@ const LinkText = styled.p`
 `;
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({ firstName: "", lastName: "", age: "", email: "", password: "" });
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", age: "", email: "", password: "", role: "user" });
   const navigate = useNavigate();
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const handleRoleChange = (e) => setFormData({ ...formData, role: e.target.value });
+
   const handleSubmit = async () => {
     try {
-      formData.roleId = "67be8f6378f28218ef82b36b";
-      const res = await axios.post("/user", formData);
+      const data = { ...formData, roleId: formData.role === "user" ? "67bd3f8a8717278a8401f812" : "67be8f6378f28218ef82b36b" };
+      const res = await axios.post("/user", data);
       if (res.status === 201) {
         toast.success("Signup successful!", { position: "top-left", theme: "dark", transition: Bounce });
         setTimeout(() => navigate("/login"), 3000);
@@ -92,7 +102,7 @@ const SignUp = () => {
     <Container>
       <ToastContainer />
       <Form>
-        <h2>Sign Up</h2>
+        <h1 style={{padding:"20px"}}>Sign Up</h1>
         <InputField>
           <FaUser />
           <Input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
@@ -113,6 +123,14 @@ const SignUp = () => {
           <FaLock />
           <Input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} />
         </InputField>
+        <RadioGroup>
+          <label>
+            <input type="radio" name="role" value="user" checked={formData.role === "user"} onChange={handleRoleChange} /> User
+          </label>
+          <label>
+            <input type="radio" name="role" value="agency" checked={formData.role === "agency"} onChange={handleRoleChange} /> Agency
+          </label>
+        </RadioGroup>
         <Button onClick={handleSubmit}>Sign Up</Button>
         <LinkText onClick={() => navigate("/login")}>Already have an account? Login</LinkText>
       </Form>
@@ -121,4 +139,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-  
